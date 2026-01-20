@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h> // Nécessaire pour STDOUT_FILENO
+#include <unistd.h>
 #include "ifproc.c"
 
 void usage(const char *prog_name) {
@@ -19,7 +19,6 @@ int main(int argc, char *argv[]) {
     char *target_if = NULL;
     int mode_all = 0;
 
-    // 1. Analyse des arguments (identique à la version précédente)
     if (argc < 2) usage(argv[0]);
 
     if (strcmp(argv[1], "-a") == 0) {
@@ -31,8 +30,6 @@ int main(int argc, char *argv[]) {
         usage(argv[0]);
     }
 
-    // 2. Appel de la logique partagée
-    // On passe STDOUT_FILENO (le terminal) comme descripteur de fichier
     send_interface_data(STDOUT_FILENO, target_if, mode_all);
 
     return 0;
